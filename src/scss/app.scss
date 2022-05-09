@@ -1,0 +1,281 @@
+/*Variables*/
+$Merigold:#FCAE1E;
+$PastelOrange:#FEBA4F;
+$Pearl:#FBFCF8;
+$DodgerBlue:#1E90FF;
+$ImperialRed:#ED2939;
+$LimeGreen:#32CD32;
+
+/*Mixins*/
+@mixin flexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@mixin flexSpaceEvenly {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+@mixin flexSpaceAround {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+@mixin flexSpaceBetween {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+@mixin boderRadius($number) {
+    border-radius: $number;
+    -webkit-border-radius: $number;
+    -moz-border-radius: $number;
+    -ms-border-radius: $number;
+    -o-border-radius: $number;
+}
+@mixin transition($number,$name) {
+    transition: $number $name;
+    -webkit-transition: $number $name;
+    -moz-transition: $number $name;
+    -ms-transition: $number $name;
+    -o-transition: $number $name;
+}
+@mixin border($number,$type,$color) {
+    border: $number $type $color;
+}
+@mixin font($size,$color,$weight,$variant) {
+    font-size: $size;
+    color: $color;
+    font-weight: $weight;
+    font-variant: $variant;
+}
+@mixin WeightHeight($w,$h) {
+    width: $w;
+    height: $h;
+}
+@mixin transformScale($number) {
+    transform: scale($number);
+    -webkit-transform: scale($number);
+    -moz-transform: scale($number);
+    -ms-transform: scale($number);
+    -o-transform: scale($number);
+}
+@mixin boxShadow($value) {
+    box-shadow: $value;
+}
+
+/*Container*/
+#container {
+  @include boderRadius(15px);
+  @include border(3px,solid,$Pearl);
+  @include WeightHeight(20em,35em);
+  background-color: $Merigold;
+  #title {
+    @include flexCenter();
+    @include WeightHeight(100%,15%);
+    border-bottom: 1px solid $Pearl;
+    p {
+      @include font(1.5em,$Pearl,bold,small-caps);
+    }
+  }
+  #main {
+    @include WeightHeight(100%,70%);
+    #mainSaveClear {
+      @include WeightHeight(100%,20%);
+      @include flexSpaceAround();
+      #mainSave {
+        width: 22%;
+      }
+      #mainClear {
+        width: 35%;
+      }
+      #mainList {
+        width: 22%;
+      }
+      .mainSC {
+        height: 50%;
+        button {
+          @include WeightHeight(100%,100%);
+          @include flexSpaceEvenly();
+          @include boderRadius(5px);
+          @include transition(500ms,all);
+          @include font(0.8em,$Merigold,bold,small-caps);
+          @include border(2px,solid,$Pearl);
+          background-color: $Pearl;
+          outline: none;
+          cursor: pointer;
+          &:hover {
+            background-color: $Merigold;
+            color: $Pearl;
+          }
+        }
+      }
+    }
+    #maiCardListContainer,
+    #maiCardSaveContainer {
+      @include WeightHeight(100%,80%);
+      overflow: hidden;
+      overflow-y: scroll;
+      border-top: 1px solid $Pearl;
+      border-bottom: 1px solid $Pearl;
+      &::-webkit-scrollbar {
+        width: 0;
+      }
+      #mainCard {
+        @include border(1px,solid,white);
+        @include boderRadius(5px);
+        background-color: $PastelOrange;
+        margin: 10px;
+        #cardDateTextSaveClear {
+          @include flexSpaceBetween();
+          @include WeightHeight(100%,3em);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.76);
+          #cardDate {
+            @include font(0.9em,$Pearl,bold,small-caps);
+            margin-left: 13px;
+          }
+          #cardTextSaveClear {
+            margin-right: 13px;
+            button {
+              @include boderRadius(3px);
+              @include transition(100ms,all);
+              @include font(1em,$Pearl,none,none);
+              @include WeightHeight(1.8em,1.8em);
+              border: 0;
+              outline: none;
+              margin: 0 3px;
+              cursor: pointer;
+            }
+            #cardT {
+              background-color: $DodgerBlue;
+              &:hover {
+                @include transformScale(1.1);
+                @include boxShadow(0 0 15px $DodgerBlue);
+              }
+            }
+            #cardS {
+              &:hover {
+                @include transformScale(1.1);
+              }
+            }
+            #cardD {
+              background-color: $ImperialRed;
+              &:hover {
+                @include transformScale(1.1);
+                @include boxShadow(0 0 15px $ImperialRed);
+              }
+            }
+          }
+        }
+        #cardText {
+          @include font(1em,$Pearl,bold,none);
+          padding: 10px;
+          overflow-wrap: break-word;
+          line-height: 20px;
+        }
+        textarea {
+        @include font(1em,$Pearl,bold,none);
+          outline: none;
+          background-color: transparent;
+          border: 0;
+          padding: 10px;
+          width: 100%;
+          resize: vertical;
+          overflow: auto;
+        }
+      }
+      #cardSaveContainer {
+        @include border(1px,solid,$Pearl);
+        @include boderRadius(5px);
+        margin: 10px;
+        background-color: rgb(255, 195, 82);
+        #cardSaveDate {
+          @include WeightHeight(100%,3em);
+          @include flexSpaceBetween();
+          border-bottom: 1px solid rgba(255, 255, 255, 0.76);
+          #cardDate {
+            @include font(0.9em,$Pearl,bold,none);
+            margin-left: 13px;
+          }
+          #cardSave {
+            margin-right: 13px;
+            button {
+              @include WeightHeight(1.8em,1.8em);
+              @include boderRadius(3px);
+              @include transition(100ms,all);
+              @include font(1em,$Pearl,none,none);
+              border: 0;
+              outline: none;
+              margin: 0 3px;
+              cursor: pointer;
+            }
+            #cardS {
+              background-color: $LimeGreen;
+              &:hover {
+                @include transformScale(1.1);
+                @include boxShadow(0 0 15px $LimeGreen);
+              }
+            }
+          }
+        }
+        #cardSaveText {
+          @include font(1em,$Pearl,bold,none);
+          padding: 10px;
+          overflow-wrap: break-word;
+          line-height: 20px;
+        }
+      }
+    }
+    #mainNone {
+      @include WeightHeight(100%,5em);
+      @include flexCenter();
+      button {
+        @include font(1em,$PastelOrange,bold,none);
+        @include boderRadius(5px);
+        @include transition(150ms,all);
+        @include border(2px,solid,$Pearl);
+        @include WeightHeight(9em,2.6em);
+        outline: none;
+        background-color: $Pearl;
+        cursor: pointer;
+        &:hover {
+          background-color: transparent;
+          color: $Pearl;
+        }
+      }
+    }
+  }
+  #footer {
+    @include WeightHeight(100%,15%);
+    @include flexSpaceEvenly();
+    input {
+      @include WeightHeight(70%,50%);
+      @include boderRadius(5px);
+      outline: none;
+      border: 0;
+      padding: 10px;
+      color: $Merigold;
+      &::placeholder {
+        color: $Merigold;
+      }
+      &:focus {
+        @include boxShadow(0 0 15px $Pearl);
+      }
+    }
+    button {
+      @include WeightHeight(2.1em,2.1em);
+      @include border(2px,solid,$Pearl);
+      @include font(1.2em,$Merigold,none,none);
+      @include boderRadius(5px);
+      @include transition(150ms,all);
+      outline: none;
+      background-color: $Pearl;
+      cursor: pointer;
+      &:hover {
+        background-color: $Merigold;
+        color: $Pearl;
+      }
+    }
+  }
+}
